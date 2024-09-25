@@ -62,5 +62,6 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/react-native-chat-app.git
-   cd react-native-chat-app
+   git clone https://github.com/TK1893/kraft-chat.git
+   cd kraft-chat
+   ```
