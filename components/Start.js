@@ -1,4 +1,4 @@
-// Import libraries
+// components\Start.js
 import React, { useState } from 'react';
 import {
   View,
@@ -7,17 +7,20 @@ import {
   StyleSheet,
   ImageBackground,
   TouchableOpacity,
+  Platform,
+  KeyboardAvoidingView,
 } from 'react-native';
 
+// ****  START COMPONENT  *******************************************
 const Start = ({ navigation }) => {
-  // VARIABLES
+  // VARIABLES ----
   const image = require('../assets/Background Image.png'); // Correct way to import the image
 
-  // STATE-VARIABLES
+  // STATE-VARIABLES ----
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
 
-  // UI
+  // ****  RENDER FUNCTION  **************************************************
   return (
     <View style={styles.wrapper}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
@@ -84,15 +87,18 @@ const Start = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ImageBackground>
+      {Platform.OS === 'ios' ? (
+        <KeyboardAvoidingView behavior="padding" />
+      ) : null}
     </View>
   );
 };
 
+// ****  LAYOUT  ***************************************************************
 const styles = StyleSheet.create({
   // **  WRAPPER  ********************************************
   wrapper: {
     flex: 1, // Wrapper takes the full screen
-    // height: '100%',
   },
   // **  BACKGROUND IMAGE  ***********************************
   image: {
