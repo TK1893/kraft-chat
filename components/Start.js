@@ -11,28 +11,51 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
-import { signInAnonymously } from 'firebase/auth';
+import { signInAnonymously, signOut } from 'firebase/auth';
 
 const Start = ({ navigation, auth }) => {
   // VARIABLES ----
-  const image = require('../assets/images/BGI_11.jpg');
+  const image = require('../assets/images/BGI_01.jpg');
   // STATE-VARIABLES ----
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
 
   // FUNCTIONS -----------------------------------------------------------
+  // const signInUser = () => {
+  //   signInAnonymously(auth)
+  //     .then((result) => {
+  //       navigation.navigate('Chat', {
+  //         userID: result.user.uid,
+  //         name: name,
+  //         color: color,
+  //       });
+  //       Alert.alert('Signed in Successfully!');
+  //     })
+  //     .catch((error) => {
+  //       Alert.alert('Unable to sign in, try later again.');
+  //     });
+  // };
+
   const signInUser = () => {
-    signInAnonymously(auth)
-      .then((result) => {
-        navigation.navigate('Chat', {
-          userID: result.user.uid,
-          name: name,
-          color: color,
-        });
-        Alert.alert('Signed in Successfully!');
+    // Zuerst alle bestehenden Anmeldungen abmelden
+    signOut(auth)
+      .then(() => {
+        // Dann den Benutzer erneut anonym anmelden
+        signInAnonymously(auth)
+          .then((result) => {
+            navigation.navigate('Chat', {
+              userID: result.user.uid,
+              name: name,
+              color: color,
+            });
+            Alert.alert('Signed in Successfully!');
+          })
+          .catch((error) => {
+            Alert.alert('Unable to sign in, try again later.');
+          });
       })
       .catch((error) => {
-        Alert.alert('Unable to sign in, try later again.');
+        console.log('Sign out error:', error);
       });
   };
 
@@ -104,6 +127,7 @@ const Start = ({ navigation, auth }) => {
     </View>
   );
 };
+
 // ****  LAYOUT  ***************************************************************
 const styles = StyleSheet.create({
   // **  WRAPPER  ********************************************
@@ -123,11 +147,7 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center', // Center horizontally
   },
-  // title: {
-  //   fontSize: 50,
-  //   color: '#FFFFFF',
-  //   fontFamily: 'Poppins-SemiBold',
-  // },
+
   title: {
     fontSize: 45,
     color: '#FFFFFF',
@@ -148,7 +168,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    height: '44%', // Adjust height as needed
+    height: '44%',
     width: '88%',
     // Border & Box-Shadow
     borderWidth: 1,
@@ -164,7 +184,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#4b8a90',
     borderRadius: 5,
-    fontFamily: 'Poppins-Light', // use custom font for input text
+    fontFamily: 'Poppins-Light',
     fontSize: 16,
     marginBottom: 20, // Abstand unter dem TextInput
   },
@@ -195,7 +215,7 @@ const styles = StyleSheet.create({
   // SELECTED CIRCLE
   selectedCircle: {
     borderWidth: 3,
-    borderColor: '#FFD700', // Gold or any color you prefer for the border
+    borderColor: '#FFD700',
   },
   // **  CHAT-BUTTON  ************************************
   chatButton: {
@@ -203,7 +223,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '88%',
     height: 60,
-    // backgroundColor: '#757083',
     backgroundColor: '#4b8a90',
     borderRadius: 5,
     shadowColor: '#000',
@@ -219,5 +238,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// Make this component available to the app
 export default Start;

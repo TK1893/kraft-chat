@@ -24,8 +24,8 @@ import {
 // ****  CHAT COMPONENT  *******************************************
 const Chat = ({ navigation, route, db }) => {
   // VARIABLES ------------------------------------------------
-  // -- "USER-NAME" & "USER-COLOR" (Extraction) --
-  const { name, color } = route.params;
+  // -- "USER-NAME" & "USER-COLOR" & "USER-ID"(Extraction) --
+  const { name, color, userID } = route.params;
 
   // -- "MESSAGES" STATE-VARIABLE --
   const [messages, setMessages] = useState([]);
@@ -137,7 +137,8 @@ const Chat = ({ navigation, route, db }) => {
         renderDay={renderDay}
         onSend={(messages) => onSend(messages)}
         user={{
-          _id: 1,
+          _id: userID, // Benutzer-ID dynamisch vom aktuell angemeldeten Benutzer
+          name: name, // Optional: Benutzername übergeben
         }}
       />
       {Platform.OS === 'android' ? (
