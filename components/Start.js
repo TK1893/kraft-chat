@@ -1,6 +1,7 @@
-// components\Start.js
+// Start.js
 import React, { useState } from 'react';
 import {
+  Alert,
   View,
   TextInput,
   Text,
@@ -10,15 +11,30 @@ import {
   Platform,
   KeyboardAvoidingView,
 } from 'react-native';
+import { signInAnonymously } from 'firebase/auth';
 
-// ****  START COMPONENT  *******************************************
-const Start = ({ navigation }) => {
+const Start = ({ navigation, auth }) => {
   // VARIABLES ----
-  const image = require('../assets/Background Image.png'); // Correct way to import the image
-
+  const image = require('../assets/Background Image.png');
   // STATE-VARIABLES ----
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
+
+  // FUNCTIONS -----------------------------------------------------------
+  const signInUser = () => {
+    signInAnonymously(auth)
+      .then((result) => {
+        navigation.navigate('Chat', {
+          userID: result.user.uid,
+          name: name,
+          color: color,
+        });
+        Alert.alert('Signed in Successfully!');
+      })
+      .catch((error) => {
+        Alert.alert('Unable to sign in, try later again.');
+      });
+  };
 
   // ****  RENDER FUNCTION  **************************************************
   return (
@@ -47,7 +63,7 @@ const Start = ({ navigation }) => {
               style={[
                 styles.circle,
                 { backgroundColor: '#090C08' },
-                color === '#090C08' && styles.selectedCircle, // Apply border if selected
+                color === '#090C08' && styles.selectedCircle,
               ]}
               onPress={() => setColor('#090C08')}
             />
@@ -55,7 +71,7 @@ const Start = ({ navigation }) => {
               style={[
                 styles.circle,
                 { backgroundColor: '#474056' },
-                color === '#474056' && styles.selectedCircle, // Apply border if selected
+                color === '#474056' && styles.selectedCircle,
               ]}
               onPress={() => setColor('#474056')}
             />
@@ -63,7 +79,7 @@ const Start = ({ navigation }) => {
               style={[
                 styles.circle,
                 { backgroundColor: '#8A95A5' },
-                color === '#8A95A5' && styles.selectedCircle, // Apply border if selected
+                color === '#8A95A5' && styles.selectedCircle,
               ]}
               onPress={() => setColor('#8A95A5')}
             />
@@ -71,18 +87,13 @@ const Start = ({ navigation }) => {
               style={[
                 styles.circle,
                 { backgroundColor: '#B9C6AE' },
-                color === '#B9C6AE' && styles.selectedCircle, // Apply border if selected
+                color === '#B9C6AE' && styles.selectedCircle,
               ]}
               onPress={() => setColor('#B9C6AE')}
             />
           </View>
           {/* BUTTON */}
-          <TouchableOpacity
-            style={styles.chatButton}
-            onPress={() =>
-              navigation.navigate('Chat', { name: name, color: color })
-            }
-          >
+          <TouchableOpacity style={styles.chatButton} onPress={signInUser}>
             <Text style={styles.chatButtonText}>Start Chatting</Text>
           </TouchableOpacity>
         </View>
@@ -93,7 +104,6 @@ const Start = ({ navigation }) => {
     </View>
   );
 };
-
 // ****  LAYOUT  ***************************************************************
 const styles = StyleSheet.create({
   // **  WRAPPER  ********************************************

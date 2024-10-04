@@ -13,9 +13,16 @@ import {
   SystemMessage,
   Day,
 } from 'react-native-gifted-chat';
+import {
+  collection,
+  query,
+  orderBy,
+  addDoc,
+  onSnapshot,
+} from 'firebase/firestore';
 
 // ****  CHAT COMPONENT  *******************************************
-const Chat = ({ navigation, route }) => {
+const Chat = ({ navigation, route, db }) => {
   // VARIABLES ------------------------------------------------
   // -- "USER-NAME" & "USER-COLOR" (Extraction) --
   const { name, color } = route.params;
@@ -26,9 +33,7 @@ const Chat = ({ navigation, route }) => {
   // FUNCTIONS ------------------------------------------------
   // -- "ONSEND" --
   const onSend = (newMessages) => {
-    setMessages((previousMessages) =>
-      GiftedChat.append(previousMessages, newMessages)
-    );
+    addDoc(collection(db, 'messages'), newMessages[0]);
   };
   // -- "RENDER-BUBBLE" --
   const renderBubble = (props) => {
@@ -87,7 +92,6 @@ const Chat = ({ navigation, route }) => {
       />
     );
   };
-
   // -- "RENDER-DAY" --
   const renderDay = (props) => {
     return (
@@ -103,31 +107,24 @@ const Chat = ({ navigation, route }) => {
   };
 
   // USE-EFFECT HOOKS -----------------------------------------------
-  // "SET STATIC MESSAGES"
+  // "REAL-TIME-MESSAGES"
   useEffect(() => {
-    setMessages([
-      {
-        _id: 1,
-        text: 'Hello developer',
-        createdAt: new Date(),
-        user: {
-          _id: 2,
-          name: 'React Native',
-          avatar: 'https://placeimg.com/140/140/any',
-        },
-      },
-      {
-        _id: 2,
-        text: `${name} has entered the chat room`,
-        createdAt: new Date(),
-        system: true,
-      },
-    ]);
-  }, []);
-
-  // "SET NAVIGATION BAR TITLE"
-  useEffect(() => {
-    navigation.setOptions({ title: name });
+    navigation.setOptions({ title: name }); // "SET NAVIGATION BAR TITLE"
+    const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
+    const unsubMessages = onSnapshot(q, (docs) => {
+      let newMessages = [];
+      docs.forEach((doc) => {
+        newMessages.push({
+          id: doc.id,
+          ...doc.data(),
+          createdAt: new Date(doc.data().createdAt.toMillis()),
+        });
+      });
+      setMessages(newMessages);
+    });
+    return () => {
+      if (unsubMessages) unsubMessages();
+    };
   }, []);
 
   // ****  RENDER FUNCTION  **************************************************
