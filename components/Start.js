@@ -15,7 +15,7 @@ import { signInAnonymously } from 'firebase/auth';
 
 const Start = ({ navigation, auth }) => {
   // VARIABLES ----
-  const image = require('../assets/Background Image.png');
+  const image = require('../assets/images/BGI_11.jpg');
   // STATE-VARIABLES ----
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
@@ -53,7 +53,7 @@ const Start = ({ navigation, auth }) => {
             value={name}
             onChangeText={setName}
             placeholder="Your Name"
-            placeholderTextColor="rgba(117, 112, 131, 0.5)"
+            placeholderTextColor="rgba(75, 138, 144, 0.5)"
           />
           {/* FARBWAHL */}
           <Text style={styles.colorChoiceText}>Choose Background Color:</Text>
@@ -62,34 +62,34 @@ const Start = ({ navigation, auth }) => {
             <TouchableOpacity
               style={[
                 styles.circle,
-                { backgroundColor: '#090C08' },
-                color === '#090C08' && styles.selectedCircle,
+                { backgroundColor: '#7a3c5e' },
+                color === '#7a3c5e' && styles.selectedCircle,
               ]}
-              onPress={() => setColor('#090C08')}
+              onPress={() => setColor('#7a3c5e')}
             />
             <TouchableOpacity
               style={[
                 styles.circle,
-                { backgroundColor: '#474056' },
-                color === '#474056' && styles.selectedCircle,
+                { backgroundColor: '#ffc090' },
+                color === '#ffc090' && styles.selectedCircle,
               ]}
-              onPress={() => setColor('#474056')}
+              onPress={() => setColor('#ffc090')}
             />
             <TouchableOpacity
               style={[
                 styles.circle,
-                { backgroundColor: '#8A95A5' },
-                color === '#8A95A5' && styles.selectedCircle,
+                { backgroundColor: '#fe9dae' },
+                color === '#fe9dae' && styles.selectedCircle,
               ]}
-              onPress={() => setColor('#8A95A5')}
+              onPress={() => setColor('#fe9dae')}
             />
             <TouchableOpacity
               style={[
                 styles.circle,
-                { backgroundColor: '#B9C6AE' },
-                color === '#B9C6AE' && styles.selectedCircle,
+                { backgroundColor: '#84cbcf' },
+                color === '#84cbcf' && styles.selectedCircle,
               ]}
-              onPress={() => setColor('#B9C6AE')}
+              onPress={() => setColor('#84cbcf')}
             />
           </View>
           {/* BUTTON */}
@@ -123,10 +123,23 @@ const styles = StyleSheet.create({
     width: '100%',
     alignItems: 'center', // Center horizontally
   },
+  // title: {
+  //   fontSize: 50,
+  //   color: '#FFFFFF',
+  //   fontFamily: 'Poppins-SemiBold',
+  // },
   title: {
     fontSize: 45,
     color: '#FFFFFF',
-    fontFamily: 'Poppins-SemiBold',
+    fontFamily: 'Poppins-Bold',
+    textShadowColor: 'rgba(0, 0, 0, 0.5)', // Dark shadow color for depth
+    textShadowOffset: { width: 2, height: 2 }, // Adds offset for the shadow
+    textShadowRadius: 5, // Adds a blur to the shadow
+    shadowColor: '#000', // Shadow for iOS
+    shadowOffset: { width: 0, height: 10 }, // Vertical shadow
+    shadowOpacity: 0.2, // Higher opacity for strong shadow
+    shadowRadius: 10, // Soft shadow radius
+    elevation: 10, // Android shadow
   },
   // **  MAIN CONTAINER  **************************************
   container: {
@@ -134,26 +147,22 @@ const styles = StyleSheet.create({
     bottom: 0, // Align to the bottom of the screen
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
     height: '44%', // Adjust height as needed
     width: '88%',
     // Border & Box-Shadow
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.2)',
+    borderColor: 'rgba(75, 138, 144,0.2)',
     borderRadius: 10,
     marginBottom: 30,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 }, // Increased height for stronger vertical shadow
-    shadowOpacity: 0.6, // More opacity for a bolder shadow
-    shadowRadius: 20, // Softer, larger radius
-    elevation: 12, // Higher elevation for stronger shadow on Android
   },
   // **  TEXT-INPUT  *****************************************
   textInput: {
+    color: '#4b8a90',
     width: '88%',
     padding: 15,
     borderWidth: 1,
-    borderColor: 'gray',
+    borderColor: '#4b8a90',
     borderRadius: 5,
     fontFamily: 'Poppins-Light', // use custom font for input text
     fontSize: 16,
@@ -164,7 +173,7 @@ const styles = StyleSheet.create({
   colorChoiceText: {
     fontSize: 16,
     fontFamily: 'Poppins-Regular',
-    color: '#757083',
+    color: '#4b8a90',
   },
   // CIRCLE CONTAINER
   circleContainer: {
@@ -194,7 +203,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: '88%',
     height: 60,
-    backgroundColor: '#757083',
+    // backgroundColor: '#757083',
+    backgroundColor: '#4b8a90',
     borderRadius: 5,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 5 },
