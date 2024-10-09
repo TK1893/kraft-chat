@@ -20,22 +20,6 @@ const Start = ({ navigation, auth }) => {
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
 
-  // FUNCTIONS -----------------------------------------------------------
-  // const signInUser = () => {
-  //   signInAnonymously(auth)
-  //     .then((result) => {
-  //       navigation.navigate('Chat', {
-  //         userID: result.user.uid,
-  //         name: name,
-  //         color: color,
-  //       });
-  //       Alert.alert('Signed in Successfully!');
-  //     })
-  //     .catch((error) => {
-  //       Alert.alert('Unable to sign in, try later again.');
-  //     });
-  // };
-
   const signInUser = () => {
     // Zuerst alle bestehenden Anmeldungen abmelden
     signOut(auth)

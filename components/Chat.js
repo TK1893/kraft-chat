@@ -12,6 +12,7 @@ import {
   GiftedChat,
   SystemMessage,
   Day,
+  InputToolbar,
 } from 'react-native-gifted-chat';
 import {
   collection,
@@ -20,14 +21,15 @@ import {
   addDoc,
   onSnapshot,
 } from 'firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ****  CHAT COMPONENT  *******************************************
-const Chat = ({ navigation, route, db }) => {
+const Chat = ({ navigation, route, db, isConnected }) => {
   // VARIABLES ------------------------------------------------
+  let unsubMessages;
   // -- "USER-NAME" & "USER-COLOR" & "USER-ID"(Extraction) --
   const { name, color, userID } = route.params;
-
-  // -- "MESSAGES" STATE-VARIABLE --
+  // -- STATE-VARIABLE ----------------------------------------
   const [messages, setMessages] = useState([]);
 
   // FUNCTIONS ------------------------------------------------
@@ -105,27 +107,54 @@ const Chat = ({ navigation, route, db }) => {
       />
     );
   };
+  // -- "RENDER-INPUT-TOOLBAR" --
+  const renderInputToolbar = (props) => {
+    if (isConnected) return <InputToolbar {...props} />;
+    else return null;
+  };
 
-  // USE-EFFECT HOOKS -----------------------------------------------
   // "REAL-TIME-MESSAGES"
   useEffect(() => {
     navigation.setOptions({ title: name }); // "SET NAVIGATION BAR TITLE"
-    const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
-    const unsubMessages = onSnapshot(q, (docs) => {
-      let newMessages = [];
-      docs.forEach((doc) => {
-        newMessages.push({
-          id: doc.id,
-          ...doc.data(),
-          createdAt: new Date(doc.data().createdAt.toMillis()),
+    if (isConnected === true) {
+      // unregister current onSnapshot() listener to avoid registering multiple listeners when
+      // useEffect code is re-executed.
+      if (unsubMessages) unsubMessages();
+      unsubMessages = null;
+
+      const q = query(collection(db, 'messages'), orderBy('createdAt', 'desc'));
+      unsubMessages = onSnapshot(q, (docs) => {
+        let newMessages = [];
+        docs.forEach((doc) => {
+          newMessages.push({
+            id: doc.id,
+            ...doc.data(),
+            createdAt: new Date(doc.data().createdAt.toMillis()),
+          });
         });
+        cacheMessages(newMessages);
+        setMessages(newMessages);
       });
-      setMessages(newMessages);
-    });
+    } else loadCachedMessages();
+
+    // Clean up code
     return () => {
       if (unsubMessages) unsubMessages();
     };
-  }, []);
+  }, [isConnected]);
+
+  const loadCachedMessages = async () => {
+    const cachedMessages = (await AsyncStorage.getItem('c_messages')) || [];
+    setMessages(JSON.parse(cachedMessages));
+  };
+
+  const cacheMessages = async (messagesToCache) => {
+    try {
+      await AsyncStorage.setItem('c_messages', JSON.stringify(messagesToCache));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   // ****  RENDER FUNCTION  **************************************************
   return (
@@ -135,6 +164,7 @@ const Chat = ({ navigation, route, db }) => {
         renderBubble={renderBubble}
         renderSystemMessage={renderSystemMessage}
         renderDay={renderDay}
+        renderInputToolbar={renderInputToolbar}
         onSend={(messages) => onSend(messages)}
         user={{
           _id: userID, // Benutzer-ID dynamisch vom aktuell angemeldeten Benutzer

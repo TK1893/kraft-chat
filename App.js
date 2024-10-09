@@ -1,9 +1,11 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator } from 'react-native';
+import { View, ActivityIndicator, Alert, Logbox } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { disableNetwork, enableNetwork } from 'firebase/firestore';
+import { useNetInfo } from '@react-native-community/netinfo';
 import * as Font from 'expo-font';
 import Start from './components/Start';
 import Chat from './components/Chat';
@@ -11,8 +13,21 @@ import { app, db, auth } from './firebase'; // Importiere die initialisierten Fi
 
 // Erstelle den Navigator
 const Stack = createNativeStackNavigator();
+// LogBox.ignoreLogs(['AsyncStorage has been extracted from']);
 
 const App = () => {
+  const connectionStatus = useNetInfo();
+  // const [isConnected, setIsConnected] = useState(connectionStatus.isConnected);
+
+  useEffect(() => {
+    if (connectionStatus.isConnected === false) {
+      Alert.alert('Connection Lost!!');
+      disableNetwork(db);
+    } else if (connectionStatus.isConnected === true) {
+      enableNetwork(db);
+    }
+  }, [connectionStatus.isConnected]);
+
   // FONTS ------------------------------------------------------------------------------
   const loadFonts = async () => {
     await Font.loadAsync({
@@ -48,7 +63,13 @@ const App = () => {
         />
         <Stack.Screen
           name="Chat"
-          children={(props) => <Chat {...props} db={db} />} // Verwende children, um Props zu übergeben
+          children={(props) => (
+            <Chat
+              {...props}
+              db={db}
+              isConnected={connectionStatus.isConnected}
+            />
+          )} // Verwende children, um Props zu übergeben
         />
       </Stack.Navigator>
     </NavigationContainer>
