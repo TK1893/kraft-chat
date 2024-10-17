@@ -1,4 +1,6 @@
-// Start.js
+// components\Start.js
+
+// --------  IMPORTS  ------------------------------------------------------------
 import React, { useState } from 'react';
 import {
   Alert,
@@ -13,13 +15,15 @@ import {
 } from 'react-native';
 import { signInAnonymously, signOut } from 'firebase/auth';
 
+// --------  COMPONENT  ------------------------------------------------------------
 const Start = ({ navigation, auth }) => {
-  // VARIABLES ----
+  // VARIABLES
   const image = require('../assets/images/BGI_01.jpg');
-  // STATE-VARIABLES ----
+  // STATE-VARIABLES
   const [name, setName] = useState('');
   const [color, setColor] = useState('');
 
+  // SIGN-IN-USER
   const signInUser = () => {
     // Zuerst alle bestehenden Anmeldungen abmelden
     signOut(auth)
@@ -43,7 +47,7 @@ const Start = ({ navigation, auth }) => {
       });
   };
 
-  // ****  RENDER FUNCTION  **************************************************
+  // --------  RENDER-FUNCTION  ------------------------------------------------------------
   return (
     <View style={styles.wrapper}>
       <ImageBackground source={image} resizeMode="cover" style={styles.image}>
@@ -112,7 +116,7 @@ const Start = ({ navigation, auth }) => {
   );
 };
 
-// ****  LAYOUT  ***************************************************************
+// --------  LAYOUT  ------------------------------------------------------------
 const styles = StyleSheet.create({
   // **  WRAPPER  ********************************************
   wrapper: {

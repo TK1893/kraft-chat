@@ -1,4 +1,6 @@
-// App.js
+// App.js;
+
+// --------  IMPORTS  ------------------------------------------------------------
 import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, Alert, Logbox } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -9,16 +11,21 @@ import { useNetInfo } from '@react-native-community/netinfo';
 import * as Font from 'expo-font';
 import Start from './components/Start';
 import Chat from './components/Chat';
-import { app, db, auth } from './firebase'; // Importiere die initialisierten Firebase-Objekte
+import { app, db, auth, storage } from './firebase'; // Importiere die initialisierten Firebase-Objekte
+import { getStorage } from 'firebase/storage';
 
-// Erstelle den Navigator
+// --------  CREATE-NAVIGATOR  ------------------------------------------------------------
 const Stack = createNativeStackNavigator();
 // LogBox.ignoreLogs(['AsyncStorage has been extracted from']);
 
+// --------  COMPONENT  ------------------------------------------------------------
 const App = () => {
+  // VARIABLES
   const connectionStatus = useNetInfo();
-  // const [isConnected, setIsConnected] = useState(connectionStatus.isConnected);
+  // STATE-VARIABLES
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
+  // CONNECTION
   useEffect(() => {
     if (connectionStatus.isConnected === false) {
       Alert.alert('Connection Lost!!');
@@ -28,7 +35,7 @@ const App = () => {
     }
   }, [connectionStatus.isConnected]);
 
-  // FONTS ------------------------------------------------------------------------------
+  // FONTS
   const loadFonts = async () => {
     await Font.loadAsync({
       'Poppins-Light': require('./assets/fonts/Poppins-Light.ttf'),
@@ -37,8 +44,6 @@ const App = () => {
       'Poppins-Bold': require('./assets/fonts/Poppins-Bold.ttf'),
     });
   };
-
-  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
     loadFonts().then(() => setFontsLoaded(true));
@@ -52,7 +57,7 @@ const App = () => {
     );
   }
 
-  // RENDER FUNCTION -------------------------------------------------------------------
+  // --------  RENDER-FUNCTION  ------------------------------------------------------------
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
@@ -68,8 +73,9 @@ const App = () => {
               {...props}
               db={db}
               isConnected={connectionStatus.isConnected}
+              storage={storage}
             />
-          )} // Verwende children, um Props zu übergeben
+          )}
         />
       </Stack.Navigator>
     </NavigationContainer>
