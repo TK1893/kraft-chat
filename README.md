@@ -40,7 +40,7 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 
 ---
 
-## Setup & Installation
+## Development Environment
 
 ### Prerequisites
 
@@ -51,7 +51,7 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 - **Xcode**(macOS only): To run the app on an iOS simulator
 - **Expo Go** (installed on an physical device) to run the app on an physical device
 
-### Installation Steps
+### Installation & Setup
 
 #### 1. Clone the repository
 
