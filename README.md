@@ -167,18 +167,16 @@ Here is an overview of the app’s components and functionality:
 
 ```bash
 KRAFT-CHAT
-├── App.js
-├── app.json
-├── babel.config.js
-├── firebase.js
-├── package-lock.json
-├── package.json
-├── README.md
+.
 ├── assets
-     ├── fonts
-     └── images
+│   ├── images
+│   └── fonts
 ├── components
-     ├── Chat.js
-     ├── CustomActions.js
-     └── Start.js
+│   ├── Chat.js                  # Chat screen component
+│   ├── CustomActions.js         # Custom actions for sending images and location
+│   └── Start.js                 # Start screen component
+├── App.js                       # Entry point for the app
+├── firebase.js                  # Firebase configuration and initialization
+├── package.json                 # Project dependencies and scripts
+└── README.md                    # Project documentation
 ```
