@@ -38,17 +38,7 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 - **AsyncStorage**: For local data storage when the user is offline.
 - **Gifted Chat Library**: For building the chat interface.
 
-<!-- ---
-
-## Design Specifications
-
-- **App Title**: Font size 45, font weight 600, color #FFFFFF.
-- **Name Input Field**: Font size 16, font weight 300, color #757083, 50% opacity.
-- **Background Color Selector**: Font size 16, font weight 300, color #757083, 100% opacity.
-- **Color Options**: #090C08, #474056, #8A95A5, #B9C6AE.
-- **Start Chatting Button**: Font size 16, font weight 600, color #FFFFFF, background color #757083.
-
---- -->
+---
 
 ## Setup & Installation
 
@@ -59,18 +49,49 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 - **Firebase Account**: for setting up Firestore and Cloud Storage.
 - **Android Studio**: To run the app on an Android emulator
 - **Xcode**(macOS only): To run the app on an iOS simulator
+- **Expo Go** (installed on an physical device) to run the app on an physical device
 
 ### Installation Steps
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/TK1893/kraft-chat.git
-   cd kraft-chat
-   ```
-2. Install dependencies
-   Run the following command to install the required dependencies:
-   ```bash
-   npm install
-   ```
-3. Set up Firestore & Firbase Storage.
-4. Replace the values inside firebase.js with your Firebase configuration
+#### 1. Clone the repository
+
+Run the following command:
+
+```bash
+git clone https://github.com/TK1893/kraft-chat.git
+cd kraft-chat
+```
+
+#### 2. Install required dependencies
+
+Run the following command:
+
+```bash
+npm install
+```
+
+#### 3. Set up Firestore & Firbase Storage.
+
+#### 4. Add your Firebase configuration.
+
+Replace the values inside firebase.js with your own Firebase configuration.
+
+#### 5.1. Run the app on Android Studio (Emulator)
+
+Run the following command:
+
+```bash
+npx expo start --android
+```
+
+#### 5.2. Run the app on Xcode (Simulator)
+
+Run the following command:
+
+```bash
+npx expo start --ios
+```
+
+#### 5.3. Run the App on a physical device
+
+Open the app directly with Expo Go.
