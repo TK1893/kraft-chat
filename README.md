@@ -166,7 +166,6 @@ Here is an overview of the app’s components and functionality:
 ## File Structure
 
 ```bash
-KRAFT-CHAT
 .
 ├── assets
 │   ├── images
