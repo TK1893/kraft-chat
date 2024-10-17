@@ -46,10 +46,10 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 
 - **Node.js** installed on your machine.
 - **Expo CLI** installed globally (`npm install -g expo-cli`).
-- **Firebase Account**: for setting up Firestore and Cloud Storage.
+- **Firebase Account**: For setting up Firestore and Cloud Storage.
 - **Android Studio**: To run the app on an Android emulator
-- **Xcode**(macOS only): To run the app on an iOS simulator
-- **Expo Go** (installed on an physical device) to run the app on an physical device
+- **Xcode** (macOS only): To run the app on an iOS simulator
+- **Expo Go** To run the app on an physical device (installed on device)
 
 ### Installation & Setup
 
@@ -95,3 +95,41 @@ npx expo start --ios
 #### 5.3. Run the App on a physical device
 
 Open the app directly with Expo Go.
+
+---
+
+## App Structure
+
+```bash
+KRAFT-CHAT
+├── App.js
+├── app.json
+├── babel.config.js
+├── firebase.js
+├── package-lock.json
+├── package.json
+├── README.md
+├── assets
+     ├── fonts
+     └── images
+├── components
+     ├── Chat.js
+     ├── CustomActions.js
+     └── Start.js
+```
+
+### App.js
+
+Main entry point of the app, sets up Firebase, network monitoring, and navigation between the Start and Chat screens.
+
+### Start.js
+
+Handles user input (name and background color) and anonymous sign-in with Firebase. Navigates to the Chat screen.
+
+### Chat.js
+
+Main chat interface using GiftedChat for messaging, supporting real-time message syncing with Firestore, offline message storage, and additional features like location and image sharing.
+
+### components/CustomActions.js
+
+Implements custom actions (image picker, camera, location sharing) for chat input.
