@@ -22,9 +22,9 @@ const CustomActions = ({
   // ON-ACTION-PRESS
   const onActionPress = () => {
     const options = [
-      'Choose From Library',
-      'Take Picture',
-      'Send Location',
+      'Select an image From Library',
+      'Take a photo',
+      'Share Location',
       'Cancel',
     ];
     const cancelButtonIndex = options.length - 1;
