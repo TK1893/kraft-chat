@@ -83,13 +83,20 @@ Run the following command:
 npm install
 ```
 
-#### 3. Set up Firestore & Firbase Storage.
+#### 3. Set up Firebase
 
-#### 4. Add your Firebase configuration.
+- Create a Firebase project and enable Firestore, Firebase Authentication (Anonymous), and Firebase Storage.
+- Update the firebase.js file with your Firebase project configuration.
 
-Replace the values inside firebase.js with your own Firebase configuration.
+#### 4. Run the app
 
-#### 5.1. Run the app on Android Studio (Emulator)
+Run the following command:
+
+```bash
+npx expo start
+```
+
+##### `on Android Studio (Emulator)`
 
 Run the following command:
 
@@ -97,7 +104,7 @@ Run the following command:
 npx expo start --android
 ```
 
-#### 5.2. Run the app on Xcode (Simulator)
+##### `on Xcode (Simulator)`
 
 Run the following command:
 
@@ -105,7 +112,7 @@ Run the following command:
 npx expo start --ios
 ```
 
-#### 5.3. Run the App on a physical device
+##### `on a physical device`
 
 Open the app directly with Expo Go.
 
