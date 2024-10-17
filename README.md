@@ -1,4 +1,6 @@
-# React Native Chat App
+# KraftChat - A React Native Chat Application
+
+KraftChat is a mobile chat application built using React Native, Firebase, and Expo. The app enables real-time chat functionality with support for text, images, and location sharing. It uses Firebase for user authentication, Firestore for data storage, and Firebase Storage for uploading and storing media files like images. The app also caches messages locally when offline and restores them when the user is back online.
 
 ## Project Overview
 
@@ -8,14 +10,14 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 
 ---
 
-## Features
+## Key Features
 
-- **Anonymous User Authentication**: Users can join the chat anonymously via Firebase.
-- **Real-Time Messaging**: Users can exchange text messages in real-time.
-- **Image Sharing**: Users can select images from their gallery or take new photos to send in the chat.
-- **Location Sharing**: Users can share their current location through a map view.
-- **Offline Support**: Messages are stored locally, allowing users to view chats even without an internet connection.
-- **Accessibility**: The app is compatible with screen readers to ensure accessibility for users with visual impairments.
+- **Anonymous User Authentication**: Users are signed in anonymously using Firebase Authentication.
+- **Real-Time Messaging**: Messages are synced in real-time using Firebase Firestore.
+- **Offline Support**: Messages are cached locally using AsyncStorage, allowing users to view them even without an internet connection.
+- **Image and Location Sharing**: Users can send images from their gallery or camera and share their current location.
+- **Customizable Chat Background**: Users can choose a chat background color on the start screen.
+- **Cross-Platform**: Built using React Native, the app works on both iOS and Android.
 
 ---
 
@@ -30,15 +32,26 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 
 ## Technologies Used
 
-- **React Native**: For building the mobile app for both Android and iOS.
-- **Expo**: For easy app development and testing across platforms.
-- **Firebase Authentication**: For anonymous user authentication.
-- **Google Firestore**: For storing chat messages in the cloud.
-- **Firebase Cloud Storage**: For storing images shared via chat.
-- **AsyncStorage**: For local data storage when the user is offline.
-- **Gifted Chat Library**: For building the chat interface.
+- **React Native**: Frontend/UI framework for building cross-platform mobile applications.
+- **Expo**: Open-source platform for developing and testing universal native apps for Android, iOS and the web with JavaScript and React.
+- **Firebase**: Backend-as-a-Service (BaaS) platform providing user authentication, database, and storage.
 
----
+### Firebase Services
+
+- **Firebase Authentication**: Used for anonymous user sign-in.
+- **Firestore**: Used for real-time storage and syncing of chat messages.
+- **Firebase Storage**: Used for storing and retrieving uploaded images.
+
+### Libraries & Modules
+
+- **react-native-gifted-chat**: A customizable chat UI component library for React Native.
+- **react-native-maps**: Used for displaying shared location data in messages.
+- **expo-image-picker**: Used for selecting images from the gallery or taking new photos.
+- **expo-location**: Used for retrieving the user's current location.
+- **@react-native-async-storage/async-storage**: Used for caching messages when the user is offline.
+- **@react-native-community/netinfo**: Detects the device's network connection status.
+- **expo-font**: Loads custom fonts (Poppins) for the app's UI.
+- **firebase**: Firebase SDK for interacting with Firebase services.
 
 ## Development Environment
 
@@ -46,7 +59,7 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 
 - **Node.js** installed on your machine.
 - **Expo CLI** installed globally (`npm install -g expo-cli`).
-- **Firebase Account**: For setting up Firestore and Cloud Storage.
+- **Firebase Account**: For setting up Firestore, Authentication and Cloud Storage.
 - **Android Studio**: To run the app on an Android emulator
 - **Xcode** (macOS only): To run the app on an iOS simulator
 - **Expo Go** To run the app on an physical device (installed on device)
@@ -100,6 +113,51 @@ Open the app directly with Expo Go.
 
 ## App Structure
 
+Here is an overview of the app’s components and functionality:
+
+### `App.js`
+
+- **Purpose**: The entry point of the app.
+- **Functionality**:
+  - Initializes Firebase services (Authentication, Firestore, Storage).
+  - Manages global app state (like connection status and font loading).
+  - Sets up navigation between the `Start` and `Chat` screens.
+
+### `components/Start.js`
+
+- **Purpose**: The app’s landing screen where users enter their name and select a background color.
+- **Functionality**:
+  - Allows users to input their name.
+  - Lets users choose a background color for the chat screen.
+  - Signs in the user anonymously using Firebase Authentication.
+  - Navigates to the `Chat` screen with the provided details.
+
+### `components/Chat.js`
+
+- **Purpose**: The main chat interface where users can send and receive messages.
+- **Functionality**:
+  - Displays messages in real-time using Firebase Firestore.
+  - Caches messages locally using AsyncStorage when offline.
+  - Renders a map view for location messages and displays images when sent.
+  - Includes custom chat bubbles and input toolbar.
+  - Implements sending text, images, and location.
+
+### `components/CustomActions.js`
+
+- **Purpose**: Custom component for additional chat actions (e.g., sending images or location).
+- **Functionality**:
+  - Presents an action sheet with options for sending a photo from the gallery, taking a photo, or sharing the current location.
+  - Handles permissions for accessing the camera, gallery, and location.
+  - Uploads selected images to Firebase Storage and sends the image URL in the chat.
+
+### `firebase.js`
+
+- **Purpose**: Initializes Firebase services.
+- **Functionality**:
+  - Exports initialized instances of Firebase Authentication, Firestore, and Firebase Storage.
+
+## File Structure
+
 ```bash
 KRAFT-CHAT
 ├── App.js
@@ -117,19 +175,3 @@ KRAFT-CHAT
      ├── CustomActions.js
      └── Start.js
 ```
-
-### App.js
-
-Main entry point of the app, sets up Firebase, network monitoring, and navigation between the Start and Chat screens.
-
-### Start.js
-
-Handles user input (name and background color) and anonymous sign-in with Firebase. Navigates to the Chat screen.
-
-### Chat.js
-
-Main chat interface using GiftedChat for messaging, supporting real-time message syncing with Firestore, offline message storage, and additional features like location and image sharing.
-
-### components/CustomActions.js
-
-Implements custom actions (image picker, camera, location sharing) for chat input.
