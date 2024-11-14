@@ -32,9 +32,6 @@ This project includes four main components:
 
 <img src="https://github.com/TK1893/kraft-chat/blob/main/assets/images/BGI_01.jpg" alt="Hauptbildschirm der Anwendung" width="300">
 
-![Landing Page](https://github.com/TK1893/kraft-chat/blob/main/assets/images/BGI_01.jpg)
-![Chat Screen](assets\screenshots\Screenshot_20241114_150803.png)
-
 ## Key Features
 
 - **`Anonymous User Authentication`** - Users are signed in anonymously using Firebase Authentication.
