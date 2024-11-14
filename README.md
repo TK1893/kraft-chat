@@ -1,6 +1,6 @@
 # KraftChat - A React Native Chat Application
 
-**KraftChat** is a mobile real-time chat application built using **`React Native`**, `Firebase`, `Expo `and various modern tools. It allows users to communicate with one another via text, images, and location sharing. The app utilizes `Firebase` for real-time database functionality, `Firebase Authentication` for anonymous sign-ins,`Firestore` for storing chat messages and `Firebase Cloud Storage` for uploading images. The app also caches messages locally when offline and restores them when the user is back online.
+**KraftChat** is a mobile real-time chat application built using **React Native**, `Firebase`, **Expo** and various modern tools. It allows users to communicate with one another via text, images, and location sharing. The app utilizes `Firebase` for real-time database functionality, `Firebase Authentication` for anonymous sign-ins,`Firestore` for storing chat messages and `Firebase Cloud Storage` for uploading images. The app also caches messages locally when offline and restores them when the user is back online.
 
 This project includes four main components:
 
