@@ -30,7 +30,7 @@ This project includes four main components:
 
 ## Screenshots
 
-<div style="display: flex; gap: 15px;">
+<div style="display: flex; gap: 30px;">
 
 <img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_145648.png" alt="Hauptbildschirm der Anwendung" width="200">
 
