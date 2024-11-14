@@ -32,6 +32,12 @@ This project includes four main components:
 
 <img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_145648.png" alt="Hauptbildschirm der Anwendung" width="300">
 
+<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150153.png" alt="Hauptbildschirm der Anwendung" width="300">
+
+<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150803.png" alt="Hauptbildschirm der Anwendung" width="300">
+
+<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150919.png" alt="Hauptbildschirm der Anwendung" width="300">
+
 ## Key Features
 
 - **`Anonymous User Authentication`** - Users are signed in anonymously using Firebase Authentication.
