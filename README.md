@@ -32,13 +32,13 @@ This project includes four main components:
 
 <div style="display: flex; gap: 30px;">
 
-<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_145648.png" alt="Hauptbildschirm der Anwendung" width="200">
+<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_145648.png" alt="Hauptbildschirm der Anwendung" width="250">
 
-<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150153.png" alt="Hauptbildschirm der Anwendung" width="200">
+<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150153.png" alt="Hauptbildschirm der Anwendung" width="250">
 
-<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150803.png" alt="Hauptbildschirm der Anwendung" width="200">
+<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150803.png" alt="Hauptbildschirm der Anwendung" width="250">
 
-<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150919.png" alt="Hauptbildschirm der Anwendung" width="200">
+<img src="https://github.com/TK1893/kraft-chat/blob/main/assets/screenshots/Screenshot_20241114_150919.png" alt="Hauptbildschirm der Anwendung" width="250">
 
 </div>
 
