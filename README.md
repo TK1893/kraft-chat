@@ -4,44 +4,51 @@
 
 This project includes four main components:
 
-### 1. **Chat**
+1. `Chat`- Handles the main chat interface and real-time messaging functionality.
 
-- Handles the main chat interface and real-time messaging functionality.
+2. `CustomActions` - Allows users to send images and share locations within the chat.
 
-### 2. **CustomActions**
+3. `Start` - The onboarding screen where users set their username and background color.
 
-- Allows users to send images and share locations within the chat.
+4. `App` - The root component that integrates all other components and handles navigation, font loading, and network connection status.
 
-### 3. **Start**
+## Table of Contents
 
-- The onboarding screen where users set their username and background color.
-
-### 4. **App**
-
-- The root component that integrates all other components and handles navigation, font loading, and network connection status.
-
-## Project Overview
-
-This project is a mobile chat application built using **React Native**. The app allows users to exchange messages, share images, and send their current location. It also offers offline message storage and accessibility features.
-
-The app is developed using **React Native** and **Expo**, with **Google Firestore** for storing chat messages and **Firebase Cloud Storage** for image uploads.
+- [Screenshots](screenshots)
+- [Key Features](key-features)
+- [User Stories](user-stories)
+- [Technologies Used](#technologies-used)
+- [Development Environment](development-environment)
+  - [Prerequisites](prerequisites)
+  - [Installation & Setup](#installation--setup)
+- [Component Details](#component-details)
+- [Folder Structure](#folder-structure)
+- [License](#license)
+- [Author](#author)
 
 ---
 
+## Screenshots
+
+![Landing Page](assets\screenshots\Screenshot_20241114_145648.png)
+![Chat Screen](assets\screenshots\Screenshot_20241114_150803.png)
+
 ## Key Features
 
-- **Anonymous User Authentication**: Users are signed in anonymously using Firebase Authentication.
-- **Real-Time Messaging**: Messages are synced in real-time using Firebase Firestore.
-- **Offline Support**: Messages are cached locally using AsyncStorage, allowing users to view them even without an internet connection.
-- **Image and Location Sharing**: Users can send images from their gallery or camera and share their current location.
-- **Customizable Chat Background**: Users can choose a chat background color on the start screen.
-- **Cross-Platform**: Built using React Native, the app works on both iOS and Android.
+- **`Anonymous User Authentication`** - Users are signed in anonymously using Firebase Authentication.
+
+- `Real-Time Messaging` - Messages are synced in real-time using Firebase Firestore.
+- **`Offline Support`** - Messages are cached locally using AsyncStorage, allowing users to view them even without an internet connection.
+- **`Image and Location Sharing`** - Users can send images from their gallery or camera and share their current location.
+- **`Customizable Chat Background`** - Users can choose a chat background color on the start screen.
+- **`Cross-Platform`** - Built using React Native, the app works on both iOS and Android.
 
 ---
 
 ## User Stories
 
 - As a new user, I want to easily join a chat room to start chatting with friends and family.
+
 - As a user, I want to send messages, images, and my location.
 - As a user, I want to view messages offline.
 - As a user with a visual impairment, I want the app to be screen reader-compatible.
@@ -50,37 +57,50 @@ The app is developed using **React Native** and **Expo**, with **Google Firestor
 
 ## Technologies Used
 
-- **React Native**: Frontend/UI framework for building cross-platform mobile applications.
-- **Expo**: Open-source platform for developing and testing universal native apps for Android, iOS and the web with JavaScript and React.
-- **Firebase**: Backend-as-a-Service (BaaS) platform providing user authentication, database, and storage.
+- **`React Native`**  
+  Frontend/UI framework for building cross-platform mobile applications.
 
-### Firebase Services
+- **`Expo`**  
+  Open-source platform for developing and testing universal native apps for Android, iOS and the web with JavaScript and React.
+- **`Firebase`**  
+  Backend-as-a-Service (BaaS) platform providing user authentication, database, and storage.
 
-- **Firebase Authentication**: Used for anonymous user sign-in.
-- **Firestore**: Used for real-time storage and syncing of chat messages.
-- **Firebase Storage**: Used for storing and retrieving uploaded images.
+  - `Firebase Firestore` - NoSQL database used for real-time storage and syncing of chat messages.
+
+  - `Firebase Authentication` - Handles anonymous sign-ins for users.
+
+  - `Firebase Storage` - Used for storing and retrieving uploaded images..
+
+- **`React Navigation`** - Used for handling navigation between screens.
+- **`AsyncStorage`** - For storing cached messages when the app is offline.
+- **`React Native Maps`** - For rendering map views with location data within messages.
+- **`Expo Fonts`** - Used to load custom fonts in the app.
 
 ### Libraries & Modules
 
-- **react-native-gifted-chat**: A customizable chat UI component library for React Native.
-- **react-native-maps**: Used for displaying shared location data in messages.
-- **expo-image-picker**: Used for selecting images from the gallery or taking new photos.
-- **expo-location**: Used for retrieving the user's current location.
-- **@react-native-async-storage/async-storage**: Used for caching messages when the user is offline.
-- **@react-native-community/netinfo**: Detects the device's network connection status.
-- **expo-font**: Loads custom fonts (Poppins) for the app's UI.
-- **firebase**: Firebase SDK for interacting with Firebase services.
+- **`react-native-gifted-chat`** - A customizable chat UI component library for React Native.
+
+- **`react-native-maps`** - Used for displaying shared location data in messages.
+- **`expo-image-picker`** - Used for selecting images from the gallery or taking new photos.
+- **`expo-location`** - Used for retrieving the user's current location.
+- **`@react-native-async-storage/async-storage`** - Used for caching messages when the user is offline.
+- **`@react-native-community/netinfo`** - Detects the device's network connection status.
+- **`expo-font`** - Loads custom fonts (Poppins) for the app's UI.
+- **`firebase`**: Firebase SDK for interacting with Firebase services.
+
+---
 
 ## Development Environment
 
 ### Prerequisites
 
-- **Node.js** installed on your machine.
-- **Expo CLI** installed globally (`npm install -g expo-cli`).
-- **Firebase Account**: For setting up Firestore, Authentication and Cloud Storage.
-- **Android Studio**: To run the app on an Android emulator
-- **Xcode** (macOS only): To run the app on an iOS simulator
-- **Expo Go** To run the app on an physical device (installed on device)
+- **`Node.js`** installed on your machine.
+
+- **`Expo CLI`** installed globally (`npm install -g expo-cli`).
+- **`Firebase Account`**: For setting up Firestore, Authentication and Cloud Storage.
+- **`Android Studio`**: To run the app on an Android emulator
+- **`Xcode`** (macOS only): To run the app on an iOS simulator
+- **`Expo Go`** To run the app on an physical device (installed on device)
 
 ### Installation & Setup
 
@@ -136,52 +156,90 @@ Open the app directly with Expo Go.
 
 ---
 
-## App Structure
+## Component Details
 
 Here is an overview of the app’s components and functionality:
 
 ### `App.js`
 
-- **Purpose**: The entry point of the app.
-- **Functionality**:
-  - Initializes Firebase services (Authentication, Firestore, Storage).
+The root component(entry point) of the app that integrates all other components and handles application-wide logic such as network status, font loading, and navigation.
+
+- **`Key features`**
   - Manages global app state (like connection status and font loading).
   - Sets up navigation between the `Start` and `Chat` screens.
+- **`Important functions`**
+
+  - `loadFonts`: Loads custom fonts required for the app.
+
+  - `useEffect`: Monitors network connectivity to adjust Firebase network status accordingly.
 
 ### `components/Start.js`
 
-- **Purpose**: The app’s landing screen where users enter their name and select a background color.
-- **Functionality**:
+The app’s landing screen where users enter their name and select a background color.
+
+- **`Key features`**
+
   - Allows users to input their name.
   - Lets users choose a background color for the chat screen.
-  - Signs in the user anonymously using Firebase Authentication.
-  - Navigates to the `Chat` screen with the provided details.
+  - Signs in the user anonymously using `Firebase Authentication`.
+  - Navigates to the Chat screen with the provided details.
+
+- **`Important functions`**
+  - `signInUser`: Signs the user in anonymously and navigates to the Chat screen.
 
 ### `components/Chat.js`
 
-- **Purpose**: The main chat interface where users can send and receive messages.
-- **Functionality**:
+This component is responsible for displaying the main chat interface and handling real-time messaging.
+
+- **`Key features`**
+
   - Displays messages in real-time using Firebase Firestore.
   - Caches messages locally using AsyncStorage when offline.
   - Renders a map view for location messages and displays images when sent.
   - Includes custom chat bubbles and input toolbar.
   - Implements sending text, images, and location.
 
+- **`Important functions`**
+
+  - `onSend` - Handles the sending of messages to Firebase.
+
+  - `renderBubble` - Customizes the message bubbles (e.g., background color, text color).
+  - `renderInputToolbar` - Shows the input toolbar if the user is connected to the internet.
+  - `loadCachedMessages` - Loads previously cached messages when the device is offline.
+  - `cacheMessages` - Saves the messages locally to AsyncStorage.
+
 ### `components/CustomActions.js`
 
-- **Purpose**: Custom component for additional chat actions (e.g., sending images or location).
-- **Functionality**:
+Custom component for additional chat actions (e.g., sending images or location).
+
+- **`Key features`**
+
   - Presents an action sheet with options for sending a photo from the gallery, taking a photo, or sharing the current location.
   - Handles permissions for accessing the camera, gallery, and location.
   - Uploads selected images to Firebase Storage and sends the image URL in the chat.
+  - Uses Expo's `ImagePicker` and `Location` API to handle image selection and location fetching.
+
+- **`Important functions`**
+
+  - `onActionPress`: Displays the action sheet with options.
+
+  - `pickImage`: Allows the user to pick an image from their device's gallery.
+  - `takePhoto`: Allows the user to take a photo with their device's camera.
+  - `getLocation`: Fetches the user's current location.
 
 ### `firebase.js`
 
-- **Purpose**: Initializes Firebase services.
-- **Functionality**:
-  - Exports initialized instances of Firebase Authentication, Firestore, and Firebase Storage.
+Initializes Firebase services.
 
-## File Structure
+- **`Key features`**
+- Exports initialized instances of
+  - Firebase Authentication
+  - Firestore
+  - Firebase Storage.
+
+---
+
+## Folder Structure
 
 ```bash
 .
@@ -189,11 +247,23 @@ Here is an overview of the app’s components and functionality:
 │   ├── images
 │   └── fonts
 ├── components
-│   ├── Chat.js                  # Chat screen component
-│   ├── CustomActions.js         # Custom actions for sending images and location
-│   └── Start.js                 # Start screen component
-├── App.js                       # Entry point for the app
-├── firebase.js                  # Firebase configuration and initialization
-├── package.json                 # Project dependencies and scripts
-└── README.md                    # Project documentation
+│   ├── Chat.js
+│   ├── CustomActions.js
+│   └── Start.js
+├── App.js
+├── firebase.js
+├── package.json
+└── README.md
 ```
+
+---
+
+## License
+
+This project is open-source under the MIT License.
+
+---
+
+## Author
+
+Developed by [Tobias Kraft](https://tk1893.github.io/tk-portfolio/).
